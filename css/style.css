@@ -401,7 +401,7 @@ textarea:focus-visible {
   color: var(--color-primary);
 }
 
-.hero-illustration { max-width: 420px; margin: 0 auto; }
+.hero-illustration { width: 100%; height: auto; max-width: 420px; margin: 0 auto; }
 
 .hero-divider { line-height: 0; }
 .hero-divider svg { width: 100%; height: 60px; display: block; }
@@ -708,6 +708,27 @@ textarea:focus-visible {
   font-weight: 600;
   font-size: 1rem;
 }
+.slideshow-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  z-index: 3;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.slideshow-nav:hover { background: var(--color-primary); color: #fff; transform: translateY(-50%) scale(1.08); }
+.slideshow-nav-prev { left: 14px; }
+.slideshow-nav-next { right: 14px; }
+
 .slideshow-dots {
   position: absolute;
   bottom: 18px;
@@ -977,7 +998,7 @@ textarea { resize: vertical; }
 @media (max-width: 960px) {
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; max-width: 320px; margin: 0 auto; }
+  .hero-visual { order: -1; width: 100%; max-width: 320px; margin: 0 auto; }
   .about-grid,
   .location-grid,
   .contact-grid { grid-template-columns: 1fr; }
@@ -985,9 +1006,10 @@ textarea { resize: vertical; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 720px) {
-  .section { padding: 64px 0; }
-
+/* Navigacija prelazi u hamburger meni ranije nego ostatak layout-a (960px
+   umjesto 720px) — na tabletima i malim laptopima (npr. 768-900px) glavni
+   meni sa 6 stavki + logo + CTA dugme ne stane u jedan red i lomi header. */
+@media (max-width: 900px) {
   .main-nav {
     position: fixed;
     top: 73px;
@@ -1013,6 +1035,10 @@ textarea { resize: vertical; }
   .hamburger { display: flex; }
   .header-actions .btn-small { padding: 0.55em 1em; font-size: 0.85rem; }
   .logo-sub { display: none; }
+}
+
+@media (max-width: 720px) {
+  .section { padding: 64px 0; }
 
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .form-row-split { grid-template-columns: 1fr; }
@@ -1020,6 +1046,38 @@ textarea { resize: vertical; }
   .footer-grid { grid-template-columns: 1fr; text-align: left; }
   .hero-trust { gap: 20px; }
 
-  .work-nav { display: none; }
+  /* Strelice albuma ostaju vidljive, ali kao mali kružni "overlay" preko
+     samih fotografija (umjesto da oduzimaju širinu od trake sa slikama),
+     da na uskom ekranu jasno ukažu da ima još fotografija za pregled. */
+  .work-album { gap: 0; }
+  .work-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.88);
+  }
+  .work-nav-prev { left: 2px; }
+  .work-nav-next { right: 2px; }
+
   .contact-form-wrap { padding: 28px 22px; }
+}
+
+/* Dodatno fino podešavanje za najmanje ekrane (telefoni ~480px i niže),
+   prije svega za hero, jer je to prvi ekran koji korisnik vidi. */
+@media (max-width: 480px) {
+  .container { padding: 0 18px; }
+
+  .hero-inner { padding: 32px 18px 56px; }
+  .hero-blob-1 { width: 260px; height: 260px; }
+  .hero-blob-2 { width: 180px; height: 180px; }
+  .hero-visual { width: 100%; max-width: 200px; }
+
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .hero-trust { flex-direction: column; gap: 12px; }
+
+  .demo-banner { font-size: 0.72rem; padding: 8px 10px; }
 }

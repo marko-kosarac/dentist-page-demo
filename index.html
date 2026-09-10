@@ -108,7 +108,7 @@
         </div>
 
         <div class="hero-visual reveal" data-reveal="right" aria-hidden="true">
-          <svg viewBox="0 0 420 420" class="hero-illustration">
+          <svg viewBox="0 0 420 420" width="420" height="420" class="hero-illustration">
             <circle cx="210" cy="210" r="190" fill="var(--color-primary-light)"/>
             <circle cx="210" cy="210" r="140" fill="var(--color-surface)"/>
             <path d="M210 130c-14 0-22 7-31 7-10 0-19 8-19 24 0 20 7 38 11 55 3 12 6 25 15 25 10 0 10-22 12-33 1-7 3-12 12-12s11 5 12 12c2 11 2 33 12 33 9 0 12-13 15-25 4-17 11-35 11-55 0-16-9-24-19-24-9 0-17-7-31-7z" fill="var(--color-primary)"/>
@@ -357,7 +357,6 @@
 
             <input type="range" min="0" max="100" value="50" step="1" class="ba-range" id="ba-range" aria-label="Pomjerite da uporedite stanje zuba prije i poslije izbjeljivanja" />
           </div>
-          <p class="ba-note">* Stvarna klinička fotografija istog pacijenta prije i poslije ordinacijskog izbjeljivanja (nije pacijent ordinacije Dentika); rezultat u vašem slučaju zavisi od početne nijanse zuba i odabrane terapije. Izvor: Sarangi i sar., <em>„Metamorphosing Smiles Through Esthetic Vital Bleaching: A Twin Case Report”</em>, Cureus (2024), izrezano iz originala — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
         </div>
       </div>
     </section>
@@ -416,6 +415,13 @@
               <img src="assets/img/about-3.jpg" alt="Stomatolog objašnjava terapiju pacijentu" loading="lazy" width="1200" height="900" />
               <figcaption>Rad sa pacijentima</figcaption>
             </figure>
+
+            <button type="button" class="slideshow-nav slideshow-nav-prev" id="about-prev" aria-label="Prethodna fotografija">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="slideshow-nav slideshow-nav-next" id="about-next" aria-label="Sljedeća fotografija">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+            </button>
 
             <div class="slideshow-dots" role="tablist" aria-label="Izbor fotografije">
               <button type="button" class="dot is-active" data-index="0" aria-label="Prikaži sliku 1" aria-selected="true"></button>

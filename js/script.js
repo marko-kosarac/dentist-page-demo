@@ -184,6 +184,8 @@ function initAboutSlideshow() {
 
   const slides = Array.from(root.querySelectorAll(".slide"));
   const dots = Array.from(root.querySelectorAll(".dot"));
+  const prevBtn = root.querySelector("#about-prev");
+  const nextBtn = root.querySelector("#about-next");
   if (!slides.length) return;
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -219,6 +221,19 @@ function initAboutSlideshow() {
       start();
     });
   });
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      show(current - 1);
+      start();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      show(current + 1);
+      start();
+    });
+  }
 
   root.addEventListener("mouseenter", stop);
   root.addEventListener("mouseleave", start);
