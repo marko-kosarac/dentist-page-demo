@@ -55,10 +55,21 @@
    2. RESET I OSNOVNI ELEMENTI
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+/* Sprječava horizontalni skrol stranice — elementi sa scroll-reveal animacijom
+   (tačka 15, .reveal[data-reveal="left|right"]) prije ulaska u vidno polje
+   imaju transform: translateX(), koji privremeno širi skrolabilnu širinu
+   dokumenta i inače bi dozvolio da se cijela stranica povuče lijevo/desno
+   prstom/mišem. Koristi se "clip" a ne "hidden": "hidden" bi (po CSS pravilu
+   o računatim vrijednostima overflow-x/y) prisilno postavio i overflow-y:
+   auto, čime bi body postao sopstveni scroll-kontejner i pokvario
+   position:sticky header (sticky bi se računao u odnosu na body umjesto
+   na viewport). "clip" ne pravi scroll-kontejner, pa ovaj problem ne postoji. */
+html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   margin: 0;
+  overflow-x: clip;
   font-family: var(--font-body);
   color: var(--color-ink);
   background: var(--color-bg);
