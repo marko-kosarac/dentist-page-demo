@@ -1,0 +1,12 @@
+# DEMO STANJE: zabranjeno indeksiranje dok je sajt na privremenom
+# demo linku (GitHub Pages/Netlify preview) sa izmišljenim podacima.
+#
+# PRILAGODI ZA PRODUKCIJU: kad klijent dobije pravi domen i sajt ima
+# stvarne podatke, zameni ispod sa:
+#
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://pravi-domen-klijenta.com/sitemap.xml
+
+User-agent: *
+Disallow: /
