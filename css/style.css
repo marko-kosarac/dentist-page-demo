@@ -1008,8 +1008,8 @@ textarea { resize: vertical; }
    -------------------------------------------------------------------------- */
 @media (max-width: 960px) {
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; width: 100%; max-width: 320px; margin: 0 auto; }
+  .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+  .hero-visual { order: -1; width: 100%; max-width: 260px; margin: 0 auto; }
   .about-grid,
   .location-grid,
   .contact-grid { grid-template-columns: 1fr; }
@@ -1021,13 +1021,11 @@ textarea { resize: vertical; }
    umjesto 720px) — na tabletima i malim laptopima (npr. 768-900px) glavni
    meni sa 6 stavki + logo + CTA dugme ne stane u jedan red i lomi header. */
 @media (max-width: 900px) {
-  /* Na mobilnom header više nije "zalijepljen" (sticky) za vrh — skroluje se
-     zajedno sa ostatkom sadržaja. Ostaje position:relative (umjesto static)
-     samo da bi z-index i dalje važio, jer je to "sidro" za padajući meni
-     ispod njega (position:absolute, umjesto ranijeg fixed + nagađane
-     vrijednosti top:73px koja se raspadala čim bi se visina headera
-     promijenila). */
-  .site-header { position: relative; }
+  /* Header ostaje sticky (nasljeđuje se iz osnovnog pravila) — prati
+     skrolovanje i uvijek je vidljiv na vrhu. Malo je "prostraniji" na
+     mobilnom (veći padding) da ne djeluje stisnuto sad kad je stalno na
+     ekranu. */
+  .header-inner { padding: 18px 20px; }
 
   .main-nav {
     position: absolute;
@@ -1092,18 +1090,26 @@ textarea { resize: vertical; }
 }
 
 /* Dodatno fino podešavanje za najmanje ekrane (telefoni ~480px i niže),
-   prije svega za hero, jer je to prvi ekran koji korisnik vidi. */
+   prije svega za hero, jer je to prvi ekran koji korisnik vidi. Cilj je da
+   stane što više sadržaja (naslov, tekst, dugmad) u prvi ekran bez skrola,
+   slično kao na laptop prikazu — zato je ilustracija znatno manja, a
+   razmaci stegnutiji nego prije. */
 @media (max-width: 480px) {
   .container { padding: 0 18px; }
 
-  .hero-inner { padding: 32px 18px 56px; }
-  .hero-blob-1 { width: 260px; height: 260px; }
-  .hero-blob-2 { width: 180px; height: 180px; }
-  .hero-visual { width: 100%; max-width: 200px; }
+  .hero { padding-top: 0; }
+  .hero-inner { padding: 20px 18px 32px; gap: 14px; }
+  .hero-blob-1 { width: 220px; height: 220px; }
+  .hero-blob-2 { width: 150px; height: 150px; }
+  .hero-visual { width: 100%; max-width: 120px; }
 
-  .hero-actions { flex-direction: column; align-items: stretch; }
+  h1 { font-size: 1.7rem; }
+  .eyebrow { margin-bottom: 0.4em; }
+  .hero-lead { font-size: 0.95rem; margin-bottom: 0.6em; }
+
+  .hero-actions { flex-direction: column; align-items: stretch; margin: 16px 0; gap: 10px; }
   .hero-actions .btn { width: 100%; }
-  .hero-trust { flex-direction: column; gap: 12px; }
+  .hero-trust { flex-direction: column; gap: 10px; padding-top: 14px; }
 
   .demo-banner { font-size: 0.72rem; padding: 8px 10px; }
 }
