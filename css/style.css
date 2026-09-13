@@ -231,19 +231,6 @@ textarea:focus-visible {
 }
 
 /* --------------------------------------------------------------------------
-   DEMO TRAKA — ukloni ceo blok (HTML + ovaj CSS) pre slanja klijentu u produkciju
-   -------------------------------------------------------------------------- */
-.demo-banner {
-  background: var(--color-ink);
-  color: #fff;
-  text-align: center;
-  font-size: 0.82rem;
-  padding: 8px 16px;
-  position: relative;
-  z-index: 200;
-}
-
-/* --------------------------------------------------------------------------
    5. HEADER
    -------------------------------------------------------------------------- */
 .site-header {
@@ -384,7 +371,7 @@ textarea:focus-visible {
   grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 48px;
-  padding: 64px 24px 96px;
+  padding: 40px 24px 56px;
 }
 
 .hero-lead { font-size: 1.1rem; max-width: 46ch; }
@@ -393,7 +380,7 @@ textarea:focus-visible {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  margin: 32px 0;
+  margin: 24px 0;
 }
 
 .hero-trust {
@@ -403,7 +390,7 @@ textarea:focus-visible {
   font-size: 0.9rem;
   color: var(--color-ink-soft);
   border-top: 1px solid var(--color-border);
-  padding-top: 24px;
+  padding-top: 16px;
 }
 .hero-trust strong {
   display: block;
@@ -1022,10 +1009,14 @@ textarea { resize: vertical; }
    meni sa 6 stavki + logo + CTA dugme ne stane u jedan red i lomi header. */
 @media (max-width: 900px) {
   /* Header ostaje sticky (nasljeđuje se iz osnovnog pravila) — prati
-     skrolovanje i uvijek je vidljiv na vrhu. Malo je "prostraniji" na
-     mobilnom (veći padding) da ne djeluje stisnuto sad kad je stalno na
-     ekranu. */
-  .header-inner { padding: 18px 20px; }
+     skrolovanje i uvijek je vidljiv na vrhu. Traka je "prostranija" na
+     mobilnom (veći vertikalni padding + manje dugme/hamburger), da dugme
+     ne dodiruje ivice trake nego ima vazduha oko sebe. Selektor mora biti
+     .site-header .header-inner (ne samo .header-inner) jer taj element
+     ima i klasu .container — inače .container-ovo pravilo za padding u
+     @media(480px) bloku (koje dolazi kasnije u fajlu) pregazi ovo pravilo
+     i vertikalni padding ostane 0. */
+  .site-header .header-inner { padding: 20px 20px; }
 
   .main-nav {
     position: absolute;
@@ -1056,8 +1047,9 @@ textarea { resize: vertical; }
     padding: 12px 0;
     border-bottom: 1px solid var(--color-border);
   }
-  .hamburger { display: flex; }
-  .header-actions .btn-small { padding: 0.55em 1em; font-size: 0.85rem; }
+  .hamburger { display: flex; width: 36px; height: 36px; }
+  .header-actions { gap: 10px; }
+  .header-actions .btn-small { padding: 0.5em 0.9em; font-size: 0.8rem; }
   .logo-sub { display: none; }
 }
 
@@ -1110,6 +1102,4 @@ textarea { resize: vertical; }
   .hero-actions { flex-direction: column; align-items: stretch; margin: 16px 0; gap: 10px; }
   .hero-actions .btn { width: 100%; }
   .hero-trust { flex-direction: column; gap: 10px; padding-top: 14px; }
-
-  .demo-banner { font-size: 0.72rem; padding: 8px 10px; }
 }
