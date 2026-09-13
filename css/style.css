@@ -1021,18 +1021,33 @@ textarea { resize: vertical; }
    umjesto 720px) — na tabletima i malim laptopima (npr. 768-900px) glavni
    meni sa 6 stavki + logo + CTA dugme ne stane u jedan red i lomi header. */
 @media (max-width: 900px) {
+  /* Na mobilnom header više nije "zalijepljen" (sticky) za vrh — skroluje se
+     zajedno sa ostatkom sadržaja. Ostaje position:relative (umjesto static)
+     samo da bi z-index i dalje važio, jer je to "sidro" za padajući meni
+     ispod njega (position:absolute, umjesto ranijeg fixed + nagađane
+     vrijednosti top:73px koja se raspadala čim bi se visina headera
+     promijenila). */
+  .site-header { position: relative; }
+
   .main-nav {
-    position: fixed;
-    top: 73px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--transition);
   }
-  .main-nav.is-open { max-height: 420px; }
+  /* Linija ispod menija (border-bottom) i sjenka postoje samo dok je meni
+     otvoren — ranije je border-bottom bio na .main-nav stalno, pa je i kad
+     je meni bio zatvoren (max-height:0) ostajala vidljiva tanka linija
+     preko cijelog ekrana, fiksirana i odvojena od sadržaja pri skrolovanju. */
+  .main-nav.is-open {
+    max-height: 420px;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
   .main-nav ul {
     flex-direction: column;
     padding: 16px 24px 24px;
